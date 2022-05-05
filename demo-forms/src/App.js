@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import ExampleRefs from './components/ExampleRefs'
 
 function App() {
   const [name, setName] = useState('')
@@ -31,6 +32,8 @@ function App() {
         <button type="button" onClick={onSubmit}>Enviar</button>
         <button onClick={(e) => handleButtonClick(e)}>Quiero tener suerte</button>
       </form>
+
+      <ExampleRefs />
     </div>
   );
 }
