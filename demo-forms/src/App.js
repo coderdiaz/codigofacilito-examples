@@ -2,11 +2,13 @@ import { useState, useRef } from 'react';
 import './App.css';
 import ExampleRefs from './components/ExampleRefs'
 import ExampleInputForwardRef from './components/ExampleForwardRef';
+import { Slider, Slide } from './components/Slider';
 
 function App() {
   const [name, setName] = useState('')
   const [lastName, setLastName] = useState('')
   const nameInputRef = useRef(null)
+  const sliderRef = useRef(null)
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -19,6 +21,15 @@ function App() {
     e.preventDefault()
 
     console.log('Hello guys!')
+  }
+
+  const handleSlider = (direction) => {
+    console.log(direction)
+    if (direction == 'next') {
+      sliderRef.current.next()
+    } else {
+      sliderRef.current.prev()
+    }
   }
 
   return (
@@ -42,6 +53,19 @@ function App() {
       </form>
 
       <ExampleRefs />
+      <div style={{ marginTop: 50 }}>
+        <Slider ref={sliderRef} options={{
+          slides: {
+            perView: 1,
+          },
+        }}>
+          <Slide>1</Slide>
+          <Slide>2</Slide>
+          <Slide>3</Slide>
+        </Slider>
+      </div>
+      <button onClick={() => handleSlider('prev')}>Anterior</button>
+      <button onClick={() => handleSlider('next')}>Siguiente</button>
     </div>
   );
 }
